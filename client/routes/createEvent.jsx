@@ -1,18 +1,45 @@
 import React from 'react';
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch} from 'react-redux'
+import { bindActionCreators } from 'redux';
 
+import * as actionCreator from '../actions/actions.js';
+
+
+// const selectedData = useSelector(selectorReturningObject, shallowEqual)
+
+// console.log('nameX', nameX)
+// const titleX = useSelector((state) => state.event.nameX);
+// const dateX = useSelector((state) => state.event.nameX);
+// const timeStart = useSelector((state) => state.event.nameX);
+// const timeEnd = useSelector((state) => state.event.nameX);
+// const activityType = useSelector((state) => state.event.nameX);
+// const numParticipants = useSelector((state) => state.event.nameX);
+// const locationX = useSelector((state) => state.event.nameX);
 
 
 export default function createEvent() {
-  const [nameX, setName] = useState('');
-  const [titleX, setTitle] = useState('');
-  const [dateX, setDate] = useState('');
-  const [timeStart, setTimeStart] = useState('');
-  const [timeEnd, setTimeEnd] = useState('');
-  const [activityType, setActivity_type] = useState('');
-  const [numParticipants, setNumParticipants] = useState('');
-  const [locationX, setLocation] = useState('');
+
+  const eventState = useSelector((state) => state.event);
+  // console.log('nameX state!!!', eventState)
+  const {
+    title, 
+    date,
+    startTime,
+    endTime,
+    activityType,
+    numParticipants,
+    participants,
+    location,
+    host
+  } = eventState
+
+
+  const dispatch = useDispatch();
+  const { addEvent, setTitle, setName, setDate, setTimeStart, setTimeEnd, setActivity_type, setNumParticipants, setLocation} = bindActionCreators(actionCreator, dispatch)
+
+  // const [nameX, setName] = useState('');
 
   //show participants
   //sign up button - input name - add participant list - add to array
@@ -21,37 +48,40 @@ export default function createEvent() {
 function handleSubmit () {
 
   const obj = {
-    title: titleX,
-    date: dateX,
-    start_time: timeStart,
-    end_time: timeEnd,
+    title: title,
+    date: date,
+    start_time: startTime,
+    end_time: endTime,
     activity_type: activityType,
     num_participants: numParticipants,
-    participants:nameX,
-    location: locationX
-  }
+    participants: host,
+    location: location,
+    hostName: host,
+    };
 
 
   fetch('http://localhost:3000/createEvent', {
     method: 'POST',
-
     headers: {
       'Content-Type': 'application/json',
       // x-www-form-urlencoded
-  },
-
+    },
     body: JSON.stringify(obj),
-    
-  })
-  .then(response => response.json())
-  // .then(useNavigate("/success"))
-  .catch(console.log("Error in fetch POST to /createEvent"))
+    })
+    .then(response => { 
+      console.log('CHECK STATUS: ', response.status)
+      if (response.status===200){
+        addEvent(obj);
+      }
+    })
+    .then((data) =>{
+      console.log(data)
+    })
+    .catch(console.log("Error in fetch POST to /createEvent"))
   
   console.log(obj);
 
 }
-
-//UPDATE events SET date = '2022-06-26', start_time = '010:00', end_time = '012:00', activity_type = 'Basketball', num_participants = 10, zip = 96813 WHERE id = 1
 
     return(
     <main>
@@ -89,7 +119,7 @@ function handleSubmit () {
       </div>
       <div>
        <button id = "submitButton" onClick = {() => { alert("Successfully submitted")
-       handleSubmit()}}>Submit Event!</button>
+       handleSubmit()}}>Create Event!</button>
       </div>
       </div>
     </main>

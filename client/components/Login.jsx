@@ -8,6 +8,7 @@ const Login = () => {
   const passwordRef = useRef(null);
 
   const handleSubmit = () => {
+    console.log('pressed');
     fetch('/login/api', {
       method: 'POST',
       headers: {

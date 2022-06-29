@@ -14,14 +14,13 @@
 //   INSERT INTO users(user_name, password, zip)
 // VALUES('fake', null, 96813)
 
-
 //   //HOBBY TABLE
 
 //   //   Table hobby {
 //   //     id int [pk, increment]
 //   //     hobby varchar
 //   //   }
-  
+
 //   CREATE TABLE hobby(
 //     id SERIAL PRIMARY KEY,
 //     hobby varchar,
@@ -53,7 +52,6 @@
 //     comment varchar
 // );
 
-
 // //   Table profile_picture {
 // //     id int [pk, increment]
 // //     picture varchar
@@ -74,7 +72,7 @@
 // //     participant_id int
 // //     comment_id int
 // //   }
-  
+
 // CREATE TABLE events(
 //     id SERIAL PRIMARY KEY,
 //     title varchar,
@@ -88,19 +86,16 @@
 //     comment_id int
 // )
 
-
-// UPDATE events SET date = '2022-06-26', start_time = '010:00', end_time = '012:00', activity_type = 'Basketball', num_participants = 10, zip = 96813 WHERE id = 1
+// UPDATE events SET date = '2022-06-26', start_time = '10:00', end_time = '12:00', activity_type = 'Basketball', num_participants = 10, zip = 96813 WHERE id = 1
 
 // //   Table participants as P {
 // //     id int [pk, increment] // primary key
 // //     name varchar
 // //   }
 
-
 // //   Ref: events.participant_id < participants.id
 // //   Ref: U.participant_id > participants.id
 // //   Ref: events.comment_id < comments.id
-
 
 // //update event
 // UPDATE events

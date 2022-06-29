@@ -1,8 +1,8 @@
-//const db = require('../models/databaseModel');
+const db = require('../models/databaseModel');
 
 const loginController = {};
 
-loginController.postLogin = (req, res, next) => {
+loginController.postLogin = function (req, res, next) {
   const {username, password} = req.body;
 
   if (!username || !password) {
@@ -10,9 +10,9 @@ loginController.postLogin = (req, res, next) => {
     return next();
   } else {
     // check database
+    res.locals.loggedIn = 'True';
   }
 
-  console.log(username, password);
   return next();
 };
 

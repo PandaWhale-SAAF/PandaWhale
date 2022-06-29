@@ -8,6 +8,7 @@ const Signup = (props) => {
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);
   const emailRef = useRef(null);
+  const zipRef = useRef(null);
 
   const handleSubmit = () =>
     fetch('/signup/api', {
@@ -21,13 +22,14 @@ const Signup = (props) => {
         firstname: firstNameRef.current.value,
         lastname: lastNameRef.current.value,
         email: emailRef.current.value,
+        zip: zipRef.current.value,
       }),
     })
       .then((data) => data.json())
       .then((data) => {
         if (data === 'Success') {
         } else {
-          window.alert('Incorrect username or password');
+          window.alert('Failed');
         }
       });
 
@@ -55,6 +57,10 @@ const Signup = (props) => {
         <div className="log-in-sec">
           <label type="text">E-Mail: </label>
           <input type="text" placeholder="Type here" ref={emailRef} />
+        </div>
+        <div className="log-in-sec">
+          <label type="text">Zip: </label>
+          <input type="text" placeholder="Type here" ref={zipRef} />
         </div>
         <button className="submit-btn" onClick={handleSubmit}>
           Sign-Up

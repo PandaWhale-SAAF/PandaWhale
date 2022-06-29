@@ -1,11 +1,11 @@
 const express = require('express');
 const path = require('path');
-const loginController = '../controllers/loginController';
+const loginController = require('../controllers/loginController');
 
 const router = express.Router();
 
-router.post('/', (req, res) => {
-  res.status(200).json('Success');
+router.post('/', loginController.postLogin, (req, res) => {
+  res.status(200).json(res.locals.loggedIn);
 });
 
 module.exports = router;

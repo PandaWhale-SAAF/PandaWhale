@@ -12,7 +12,7 @@ export default function App() {
     return (
       <div className="app-container" display="flex">
         <Navbar />
-        <h1>Panda Whale</h1>
+        {/* <h1>Panda Whale</h1> */}
         <Outlet id="eventContainer" />
       </div>
     );

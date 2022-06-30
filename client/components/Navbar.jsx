@@ -15,9 +15,9 @@ const Navbar = (props) => {
         <Link id="navText" to="/profile">
           My Profile
         </Link>
-        <Link id="navSignup" to="/signup">
+        {/* <Link id="navSignup" to="/signup">
           Sign up!
-        </Link>
+        </Link> */}
       </nav>
   )
 }

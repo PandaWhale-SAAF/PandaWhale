@@ -35,15 +35,8 @@ export default function createEvent() {
     host
   } = eventState
 
-
-  const dispatch = useDispatch();
-  const { addEvent, setTitle, setName, setDate, setTimeStart, setTimeEnd, setActivity_type, setNumParticipants, setLocation} = bindActionCreators(actionCreator, dispatch)
-
-  // const [nameX, setName] = useState('');
-
-  //show participants
-  //sign up button - input name - add participant list - add to array
-  
+const dispatch = useDispatch();
+const { addEvent, setTitle, setName, setDate, setTimeStart, setTimeEnd, setActivity_type, setNumParticipants, setLocation} = bindActionCreators(actionCreator, dispatch)
 
 function handleSubmit () {
 

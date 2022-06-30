@@ -29,10 +29,9 @@ export default function EventBox ({info, onComment, onSignUp, onViewParticipants
                 },
       body: JSON.stringify(obj),
       })
-      //.then(response => response.json())
+      .then(response => response.json())
+      .then(response => console.log(response))
       .catch(console.log("Error in fetch PATCH to /signUp"))
-      
-
   }
 
 
@@ -60,6 +59,7 @@ export default function EventBox ({info, onComment, onSignUp, onViewParticipants
             handleSubmit()
             alert("Successfully submitted")
         }}>Sign up for event</button>
+
         <input id='signUpInput' placeholder='Enter your name!' onChange = {e => {
           setName(e.target.value)
           }}/>

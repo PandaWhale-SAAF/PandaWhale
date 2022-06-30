@@ -4,65 +4,62 @@ import EventBox from "./EventBox"
 import { useState } from 'react';
 import { getData } from "./fakedata";
 import { useEffect } from 'react';
+import Navbar from './components/Navbar.jsx';
 
+import { useSelector, useDispatch} from 'react-redux'
+import { bindActionCreators } from 'redux';
+import * as actionCreator from './actions/actions.js';
 
 const data = getData();
-
-
+console.log('data', data)
 
 //new get request, the req.params will 
 
 export default function MainContainer (){
-    const[data, setData] = useState([]);
-    const[sortType, setSortType] = useState('title');
+ 
+    const eventState = useSelector((state) => state.event);
+    const {data, sortType} = eventState;
 
+    const dispatch = useDispatch();
+    const { setData, setSortType } = bindActionCreators(actionCreator, dispatch)
+
+
+
+    //fetch data
     useEffect(() => {
-            const url = 'http://localhost:3000/home'
-            const fetchData = async () => {
-                    try {
-                            const response = await fetch(url);
-                            const json = await response.json();
-                               setData(json)
-                        } catch (err) {
-                                console.log("error", error);
-                            }
+        const url = 'http://localhost:3000/home'
+        const fetchData = async () => {
+            try {
+                const response = await fetch(url);
+                const json = await response.json();
+                sortArray(sortType, json)
+            } catch (err) {
+                    console.log("error", error);
+            }
         }
         fetchData();
-    }, [setData]);
+    }, []); //only re render if setData is being called ==> changed to only run once
 
     useEffect(() => {
-        const sortArray = type => {
-            const types = {
-               title: 'title',
-               date: 'date',
-               activity_type: 'activity_type' 
-            };
-            const sortProperty = types[type];
-            console.log(types[type])
-            const sorted = [...data].sort((a,b) => a[sortProperty].localeCompare(b[sortProperty]));
-
-
-            console.log(sorted)
-            setData(sorted);
-        };
         sortArray(sortType)
-    }, [sortType]);
+    }, [sortType]); //only run if sortType changes
   
+    const sortArray = (type, importedData = data) => { //sorts array
+        const sorted = [...importedData].sort((a,b) => a[type].localeCompare(b[type]));
+        console.log(sorted)
+        setData(sorted);
+    };
 
     return (
         <div className='mainContainer'>
+            {/* <NavBar/> */}
             <label id = "sortText">Sort By: &nbsp;</label>
         <select id="dropDown" onChange={(e) => setSortType(e.target.value)}>
             <option value="title">Title</option>
             <option value="date">Date</option>
             <option value="activity_type">Activity</option>
         </select>
-          <ul>{data.map(info => (   
-        <EventBox
-        key={info.id}
-        info={info}/>
-        ))}
-         </ul> 
+          <ul>{data.map(info => (<EventBox key={info.id} info={info}/>))}</ul> 
        </div>
     )}
 

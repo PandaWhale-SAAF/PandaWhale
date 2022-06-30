@@ -15,10 +15,10 @@ router.delete('/', homeController.deleteEvent, (req, res) => {
   res.status(200).json(res.locals.events);
 });
 
-router.patch('/signUp', homeController.signUp, (req, res) => {
-  // console.log(res.locals.events)
-  res.status(200).json(res.locals.signUp);
-});
+// router.patch('/signUp', homeController.signUp, (req, res) => {
+//   // console.log(res.locals.events)
+//   res.status(200).json(res.locals.signUp);
+// });
 
 router.patch('/', homeController.updateEvent, (req, res) => {
   console.log(res.locals.updatedEvent);

@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt');
 
 signUpcontroller.signUp = function (req, res, next) {
   const {username, password, firstname, lastname, email, zip} = req.body;
-  console.log(req.body);
 
   const available = `SELECT username
   FROM user_login
@@ -41,7 +40,7 @@ signUpcontroller.signUp = function (req, res, next) {
       }
     });
   } else {
-    res.locals.signUp = 'fail';
+    res.locals.signUp = 'Rejected';
     return next();
   }
 };

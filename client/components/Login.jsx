@@ -3,12 +3,15 @@ import {Link} from 'react-router-dom';
 import Logo from '../images/Landing_Pad.png';
 import styles from '../styles/login-styles.scss';
 
+import {useDispatch} from 'react-redux';
+import {logIn} from '../actions/actions';
+
 const Login = () => {
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
+  const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    console.log('pressed');
     fetch('/login/api', {
       method: 'POST',
       headers: {
@@ -21,8 +24,8 @@ const Login = () => {
     })
       .then((data) => data.json())
       .then((data) => {
-        if (data === 'Success') {
-          // update state
+        if (data !== 'Rejected') {
+          dispatch(logIn(data));
         } else {
           window.alert('Incorrect username or password');
         }

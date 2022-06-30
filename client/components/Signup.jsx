@@ -1,6 +1,9 @@
 import styles from '../styles/login-styles.scss';
 import React, {useRef} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
+
+import {useDispatch} from 'react-redux';
+import {logIn} from '../actions/actions.js';
 
 const Signup = (props) => {
   const userNameRef = useRef(null);
@@ -9,6 +12,9 @@ const Signup = (props) => {
   const lastNameRef = useRef(null);
   const emailRef = useRef(null);
   const zipRef = useRef(null);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = () =>
     fetch('/signup/api', {
@@ -27,9 +33,11 @@ const Signup = (props) => {
     })
       .then((data) => data.json())
       .then((data) => {
-        if (data === 'Success') {
+        if (data !== 'Rejected') {
+          dispatch(logIn(data));
+          navigate('../', {replace: true});
         } else {
-          window.alert('Failed');
+          window.alert('Incorrect info');
         }
       });
 
@@ -71,11 +79,3 @@ const Signup = (props) => {
 };
 
 export default Signup;
-
-// export default function signUp() {
-//   return (
-//     <main id="eventContainer">
-//       <h1>Sign up</h1>
-//     </main>
-//   );
-// }

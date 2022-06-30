@@ -3,9 +3,12 @@ import {Outlet, Link} from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import Login from './components/Login.jsx';
 
+import {useSelector} from 'react-redux';
+
 export default function App() {
-  const userLoggedIn = false; // TO BE REPLACED BY STATE
-  if (userLoggedIn) {
+  const user_id = useSelector((state) => state.user.user_id);
+
+  if (user_id !== '') {
     return (
       <div className="app-container" display="flex">
         <Navbar />
@@ -16,6 +19,8 @@ export default function App() {
   } else {
     return <Login />;
   }
+
+  //return {appRender};
 
   // Put a check in place for whether user is logged in
 }

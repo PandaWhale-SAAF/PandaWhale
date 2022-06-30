@@ -12,7 +12,8 @@ const initialState = {
     numParticipants: '',
     participants: '',
     location: '',
-    host: ''
+    host: '',
+    zip: ''
 };
 
 const eventReducer = (state = initialState, action) =>{
@@ -106,7 +107,13 @@ const eventReducer = (state = initialState, action) =>{
         sortType: action.payload  
       }
     };
-
+    case types.SET_ZIP: { 
+      console.log('SET ZIPCODE')
+      return {
+        ...state,
+        zip: action.payload
+      }
+    };
 
     
     // case types.SET_SORT_TYPE:{ //change SORT State: MainContainer

@@ -60,8 +60,13 @@ export const setData = (data) => ({
 });
 
 export const setSortType = (type) => ({
-  type: types.SET_SORT_TYPE,
-  payload: type,
-});
+    type: types.SET_SORT_TYPE,
+    payload: type,
+    });
+
+export const setZip = (type) => ({
+    type: types.SET_ZIP,
+    payload: type,
+    });
 
 //   const [nameX, setName] = useState('');

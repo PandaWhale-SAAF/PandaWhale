@@ -6,16 +6,24 @@ import { getData } from "./fakedata";
 import { useEffect } from 'react';
 import Navbar from './components/Navbar.jsx';
 
+import { useSelector, useDispatch} from 'react-redux'
+import { bindActionCreators } from 'redux';
+import * as actionCreator from './actions/actions.js';
 
 const data = getData();
-
-
+console.log('data', data)
 
 //new get request, the req.params will 
 
 export default function MainContainer (){
-    const[data, setData] = useState([]);
-    const[sortType, setSortType] = useState('title');
+ 
+    const eventState = useSelector((state) => state.event);
+    const {data, sortType} = eventState;
+
+    const dispatch = useDispatch();
+    const { setData, setSortType } = bindActionCreators(actionCreator, dispatch)
+
+
 
     //fetch data
     useEffect(() => {
@@ -24,30 +32,23 @@ export default function MainContainer (){
             try {
                 const response = await fetch(url);
                 const json = await response.json();
-                setData(json)
+                sortArray(sortType, json)
             } catch (err) {
                     console.log("error", error);
             }
         }
         fetchData();
-    }, [setData]); //only re render if setData is being called
+    }, []); //only re render if setData is being called ==> changed to only run once
 
     useEffect(() => {
-        const sortArray = type => {
-            const types = {
-               title: 'title',
-               date: 'date',
-               activity_type: 'activity_type' 
-            };
-            const sortProperty = types[type];
-            console.log(types[type])
-            const sorted = [...data].sort((a,b) => a[sortProperty].localeCompare(b[sortProperty]));
-            console.log(sorted)
-            setData(sorted);
-        };
         sortArray(sortType)
     }, [sortType]); //only run if sortType changes
   
+    const sortArray = (type, importedData = data) => { //sorts array
+        const sorted = [...importedData].sort((a,b) => a[type].localeCompare(b[type]));
+        console.log(sorted)
+        setData(sorted);
+    };
 
     return (
         <div className='mainContainer'>

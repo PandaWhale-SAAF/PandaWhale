@@ -1,4 +1,12 @@
 // USER TABLE
+//pandaWhale: correct format for database insertion so far:
+
+//INSERT INTO  events VALUES ('biking', '010/01/2000 1:00', '01/01/2000 10:00','01/01/2000 10:00', 'crossfit', 5, 12345, 10, 'Your Moms house');
+
+//this format works, just be sure to insert :
+//INSERT INTO  events (title, date, start_time, end_time, activity_type, num_participants, zip, location, created_by_id) VALUES ('biking', '01/01/2000', '10:00','10:00', 'crossfit', 5, 12345, 'Your moms house', 3);
+
+
 
 // CREATE TABLE users(
 //     id SERIAL PRIMARY KEY,

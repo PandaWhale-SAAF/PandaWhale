@@ -6,7 +6,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/dist'),
     filename: 'bundle.js',
-    publicPath: '/',
+    //publicPath: '/',
   },
 
   devServer: {
@@ -45,6 +45,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
+            plugins: ['@babel/plugin-transform-runtime', '@babel/transform-async-to-generator'],
           },
         },
       },
@@ -54,10 +55,19 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: 'file-loader',
-        options: {
-          name: './client/images/[name].[ext]',
-        },
+        type: 'asset/resource'
+        // loader: 'file-loader',
+        // options: {
+        //   esModule: false,
+        //   name: '[name].ext',
+        //   publicPath: '/public'
+        // },
+      },
+      {
+        test:/\.html$/,
+        use: [
+          'html-loader'
+        ]
       },
     ],
   },

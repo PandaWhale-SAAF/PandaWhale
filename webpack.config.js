@@ -24,11 +24,16 @@ module.exports = {
       directory: path.resolve(__dirname, 'dist'),
     },
     // proxy: {
-    //     '/home': {
-    //         target: 'http://localhost:3000/',
-
-    //     }
-    // }
+    //   '/home': {
+    //     target: 'http://localhost:3000/',
+    //   },
+    // },
+    proxy: [
+      {
+        context: ['/login/api', '/signup/api'],
+        target: 'http://localhost:3000/',
+      },
+    ],
   },
 
   module: {
@@ -48,17 +53,18 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i, 
+        test: /\.(jpe?g|png|gif|svg)$/i,
         loader: 'file-loader',
         options: {
-          name: './client/images/[name].[ext]'
-        }
-      }
+          name: './client/images/[name].[ext]',
+        },
+      },
     ],
   },
 
   plugins: [
     new HTMLWebpackPlugin({
+      title: 'Development',
       template: './index.html',
     }),
   ],

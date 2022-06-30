@@ -12,7 +12,8 @@ const initialState = {
     numParticipants: '',
     participants: '',
     location: '',
-    host: ''
+    host: '',
+    zip
 };
 
 const eventReducer = (state = initialState, action) =>{

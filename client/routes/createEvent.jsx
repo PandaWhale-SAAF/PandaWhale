@@ -32,11 +32,12 @@ export default function createEvent() {
     numParticipants,
     participants,
     location,
-    host
+    host,
+    zip
   } = eventState
 
 const dispatch = useDispatch();
-const { addEvent, setTitle, setName, setDate, setTimeStart, setTimeEnd, setActivity_type, setNumParticipants, setLocation} = bindActionCreators(actionCreator, dispatch)
+const { setZip, addEvent, setTitle, setName, setDate, setTimeStart, setTimeEnd, setActivity_type, setNumParticipants, setLocation} = bindActionCreators(actionCreator, dispatch)
 
 function handleSubmit () {
 
@@ -50,6 +51,7 @@ function handleSubmit () {
     participants: host,
     location: location,
     hostName: host,
+    zip: zip
     };
 
 

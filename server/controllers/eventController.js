@@ -7,6 +7,7 @@ const eventController = {};
 //sends event input from client to database
 eventController.createEvent = (req, res, next) => {
   const data = req.body;
+  console.log(data);
   //store the user input in array for parameterization
   const inputValues = [
     req.body.title,

@@ -13,7 +13,9 @@ export default function App() {
       <div className="app-container" display="flex">
         <Navbar />
         {/* <h1>Panda Whale</h1> */}
-        <Outlet id="eventContainer" />
+        <div id='outlet-container'>
+          <Outlet id="eventContainer" />
+        </div>
       </div>
     );
   } else {

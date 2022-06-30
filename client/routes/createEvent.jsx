@@ -51,9 +51,13 @@ function handleSubmit () {
     participants: host,
     location: location,
     hostName: host,
-    zip: zip
+    zip: zip,
+    created_by_id: 28
     };
 
+    // req.body.title, req.body.date, req.body.start_time, req.body.end_time, 
+    // req.body.activity_type, req.body.num_participants, req.body.zip, 
+    // req.body.location, req.body.created_by_id
 
   fetch('http://localhost:3000/createEvent', {
     method: 'POST',
@@ -82,34 +86,38 @@ function handleSubmit () {
     <main>
       <div id = "eventContainer">
          <h1>Create Event Page</h1>
-         <label id = "eventFields">Host name: &nbsp;</label> 
+         <label className='eventLabel'>Host name: &nbsp;</label> 
          <input id = "eventFields" onChange = {e => setName(e.target.value)} />
       <div>
-        <label id="eventFields">Event title: &nbsp;</label> 
+        <label className='eventLabel'>Event title: &nbsp;</label> 
         <input id = "eventFields" onChange = {e => setTitle(e.target.value)} />
       </div>
       <div>
-        <label id="eventFields">Location: &nbsp;</label> 
+        <label className='eventLabel'>Location: &nbsp;</label> 
         <input id = "eventFields" onChange = {e => setLocation(e.target.value)} />
       </div>
 
       <div>
-       <label id = "eventFields">Date: &nbsp;</label> 
+       <label className='eventLabel'>Date: &nbsp;</label> 
        <input id = "eventFields" placeholder='YYYY-MM-DD' onChange = {e => setDate(e.target.value)} />
       </div>
       <div>
-       <label id = "eventFields">Time Start: &nbsp;</label> 
+       <label className='eventLabel'>Time Start: &nbsp;</label> 
        <input id = "eventFields" placeholder='E.g. 13:00' onChange = {e => setTimeStart(e.target.value)} />
 
-       <label id = "eventFields">Time End: &nbsp;</label> 
+       <label className='eventLabel'>Time End: &nbsp;</label> 
        <input id = "eventFields" placeholder='E.g. 15:00' onChange = {e => setTimeEnd(e.target.value)} />
       </div>
       <div>
-       <label id = "eventFields">Activity Type: &nbsp;</label> 
+       <label className='eventLabel'>Activity Type: &nbsp;</label> 
        <input id = "eventFields" onChange = {e => setActivity_type(e.target.value)} />
       </div>
       <div>
-       <label id = "eventFields">Max number participants: &nbsp;</label> 
+       <label className='eventLabel'>Zip Code: &nbsp;</label> 
+       <input id = "eventFields" onChange = {e => setZip(e.target.value)} />
+      </div>
+      <div>
+       <label className='eventLabel'>Max number participants: &nbsp;</label> 
        <input id = "eventFields" onChange = {e => setNumParticipants(e.target.value)} />
       </div>
       <div>

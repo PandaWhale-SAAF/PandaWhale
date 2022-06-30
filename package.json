@@ -1,5 +1,5 @@
 {
-  "name": "Panda Whale",
+  "name": "panda-whale",
   "version": "1.0.2",
   "description": "Panda Whale",
   "main": "webpack.config.js",

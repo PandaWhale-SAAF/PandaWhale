@@ -5,7 +5,7 @@ const path = require('path');
 const router = express.Router();
 
 router.post('/', eventController.createEvent, (req, res) => {
-    res.status(200).json(res.locals.newEvent);
+    return res.status(200).send('created event');
 })
   
 

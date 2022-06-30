@@ -22,7 +22,7 @@ homeController.getEvents = (req, res, next) => {
 };
 
 homeController.deleteEvent = (req, res, next) => {
-  const { id } = req.body
+  const {id} = req.body;
   const queryStr = `DELETE FROM events WHERE id = ${id}`;
 
   db.query(queryStr)
@@ -80,24 +80,24 @@ homeController.updateEvent = (req, res, next) => {
     });
 };
 
-homeController.signUp = (req, res, next) => {
-  const {name, id} = req.body;
-  const queryStr = `UPDATE events SET participants = ARRAY_APPEND(participants, '${name} '), num_participants = num_participants - 1 WHERE id = ${id};`;
+// homeController.signUp = (req, res, next) => {
+//   const {name, id} = req.body;
+//   const queryStr = `UPDATE events SET participants = ARRAY_APPEND(participants, '${name} '), num_participants = num_participants - 1 WHERE id = ${id};`;
 
-  db.query(queryStr)
-    .then(() => {
-      console.log(name, id);
-      res.locals.signUp = [name, id];
-      return next();
-    })
-    .catch((err) => {
-      next({
-        log: 'Error in get update sign up middleware',
-        status: 400,
-        message: 'Unable to add to sign up for event.',
-      });
-    });
-};
+//   db.query(queryStr)
+//     .then(() => {
+//       console.log(name, id);
+//       res.locals.signUp = [name, id];
+//       return next();
+//     })
+//     .catch((err) => {
+//       next({
+//         log: 'Error in get update sign up middleware',
+//         status: 400,
+//         message: 'Unable to add to sign up for event.',
+//       });
+//     });
+// };
 
 // id	title	date	start_time	end_time	activity_type	num_participants	zip	participant_id	comment_id
 

@@ -3,25 +3,26 @@ import {Outlet, Link} from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import Login from './components/Login.jsx';
 
+import {useSelector} from 'react-redux';
 
 export default function App() {
+  const user_id = useSelector((state) => state.user.user_id);
 
-  const userLoggedIn = true; // TO BE REPLACED BY STATE
-  if(userLoggedIn){
+  if (user_id !== '') {
     return (
-      <div className='app-container' display="flex">
-        <Navbar/>
+      <div className="app-container" display="flex">
+        <Navbar />
         <h1>Panda Whale</h1>
         <Outlet id="eventContainer" />
       </div>
     );
-  } else{
-    return <Login/>
+  } else {
+    return <Login />;
   }
 
+  //return {appRender};
 
   // Put a check in place for whether user is logged in
-
 }
 
 //         <div>
@@ -40,8 +41,8 @@ export default function App() {
 // }
 //}
 
-  //render() {
+//render() {
 
-  // fetch("http://localhost:3000/")
-  //     .then(response => response.json())
-  //     .then(response => console.log(response));
+// fetch("http://localhost:3000/")
+//     .then(response => response.json())
+//     .then(response => console.log(response));

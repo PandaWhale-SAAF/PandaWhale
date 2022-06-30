@@ -1,10 +1,10 @@
 {
-  "name": "yeticrabscratch",
+  "name": "Panda Whale",
   "version": "1.0.2",
-  "description": "Yeti Crab Scratch Project",
+  "description": "Panda Whale",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development",
+    "start": "node server/server.js --mode production",
     "build": "webpack --mode production",
     "dev": "concurrently \"webpack-dev-server --mode development --open --hot\" \"nodemon server/server.js --mode development\" "
   },
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/yeti-crab-scratch/yetiCrabScratch#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.20.0",
     "concurrently": "^7.2.2",
     "cors": "^2.8.5",

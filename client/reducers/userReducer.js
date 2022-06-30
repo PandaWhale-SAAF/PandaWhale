@@ -1,22 +1,22 @@
 import * as types from '../actions/actionTypes.js';
 
 const initialState = {
-    username: ''
-
+  user_id: '',
 };
 
-const usersReducer = (state = initialState, action) =>{
-
+const usersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.WHATACTIONAREWEDOING:{
-
+    case types.LOG_IN: {
+      return {
+        ...state,
+        user_id: action.payload,
+      };
     }
-    
+
     default: {
-        return state;
+      return state;
     }
   }
-
 };
 
 export default usersReducer;

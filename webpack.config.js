@@ -6,7 +6,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/dist'),
     filename: 'bundle.js',
-    publicPath: '/',
+    //publicPath: '/',
   },
 
   devServer: {
@@ -54,11 +54,14 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: 'file-loader',
-        options: {
-          name: './client/images/[name].[ext]',
-        },
+        type: 'asset/resource',
       },
+      // {
+      //   test:/\.html$/,
+      //   use: [
+      //     'html-loader'
+      //   ]
+      // },
     ],
   },
 

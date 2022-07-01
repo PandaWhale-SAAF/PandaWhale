@@ -52,14 +52,13 @@ export default function MainContainer (){
 
     return (
         <div className='mainContainer'>
-            <div className='sort-container'>
-             <label id = "sortText">Sort By: &nbsp;</label>
-             <select id="dropDown" onChange={(e) => setSortType(e.target.value)}>
-                <option value="title">Title</option>
-                <option value="date">Date</option>
-                <option value="activity_type">Activity</option>
-             </select>
-            </div>
+            {/* <NavBar/> */}
+            <label id = "sortText">Sort By: &nbsp;</label>
+        <select id="dropDown" onChange={(e) => setSortType(e.target.value)}>
+            <option value="title">Title</option>
+            <option value="date">Date</option>
+            <option value="activity_type">Activity</option>
+        </select>
           <ul>{data.map(info => (<EventBox key={info.id} info={info}/>))}</ul> 
        </div>
     )}

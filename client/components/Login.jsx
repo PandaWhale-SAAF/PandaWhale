@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import {Link} from 'react-router-dom';
-import Logo from '../images/Landing_Pad.png';
+import Logo from '../../public/Landing_Pad.png';
 import styles from '../styles/login-styles.scss';
 
 import {useDispatch} from 'react-redux';
